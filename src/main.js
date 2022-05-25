@@ -1,13 +1,23 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const bot = require('./core/bot');
-const session = require('./core/session');
-const stage = require('./scenes');
-const startBot = require('./utils/startBot');
+const bot = require("./core/bot");
+const session = require("./core/session");
+const auth = require("./middlewares/auth");
+const stage = require("./scenes");
+const startBot = require("./utils/startBot");
+
+require("./database");
 
 bot.use(session);
+bot.use((ctx, next) => {
+  ctx.session ?? (ctx.session = {});
+  next();
+});
+bot.use(auth);
 bot.use(stage.middleware());
 
-bot.start(ctx => ctx.scene.enter('start'));
+bot.start((ctx) => ctx.chat.type === "private" && ctx.scene.enter("start"));
+
+require("./utils/channel");
 
 startBot(bot);
