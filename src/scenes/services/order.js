@@ -10,8 +10,14 @@ scene.enter(async (ctx) => {
   let { category, service, car } = ctx.session.service;
 
   let text = `<b>Xizmat turi:</b> ${category.name} - ${service.name}\n`;
-  text += `<b>Mashina turi:</b> ${car}\n`;
-  text += `<b>Xizmat narxi:</b> ${service.price}\n`;
+  text += `<b>Mashina turi:</b> ${car.name}\n`;
+
+  let price = await db.models.Price.findOne({
+    service: service._id,
+    car: car._id,
+  });
+  text += `<b>Xizmat narxi:</b> ${price?.value || "Kelishiladi"}\n`;
+  ctx.session.service.price = price?.value || "Kelishiladi";
 
   const orders = await db.models.Order.find({
     category: category._id,
@@ -38,7 +44,9 @@ scene.hears("🛎 Navbatga qo'shilish", async (ctx) => {
 
   //  send to channel
   sendToChannel(
-    await db.models.Order.findById(order._id).populate("category service user")
+    await db.models.Order.findById(order._id).populate(
+      "category service user car"
+    )
   );
 
   // finish

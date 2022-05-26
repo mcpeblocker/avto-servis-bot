@@ -5,8 +5,7 @@ const schema = new mongoose.Schema({
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
-    },
-    price: Number | String
+    }
 });
 
 const Service = mongoose.model('Service', schema);

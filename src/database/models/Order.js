@@ -18,7 +18,11 @@ const schema = new mongoose.Schema({
     enum: ["pending", "done", "cancelled"],
     default: "pending",
   },
-  car: String,
+  car: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Car",
+  },
+  price: String,
 });
 
 const Order = mongoose.model("Order", schema);

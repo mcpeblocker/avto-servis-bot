@@ -1,6 +1,6 @@
 const { Scenes, Markup } = require("telegraf");
 const { updateDb } = require("../utils/excel");
-const axios = require('axios');
+const axios = require("axios");
 
 const scene = new Scenes.WizardScene(
   "admin:update",
@@ -15,6 +15,7 @@ const scene = new Scenes.WizardScene(
     if (!file) return ctx.scene.reenter();
     const { href: link } = await ctx.telegram.getFileLink(file.file_id);
     const { data } = await axios.get(link, { responseType: "arraybuffer" });
+    ctx.reply("⏳ Qabul qilindi. Baza yangilanmoqda...");
     await updateDb(data, (success) => {
       if (!success) {
         let text =

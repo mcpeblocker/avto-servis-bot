@@ -14,9 +14,9 @@ let statuses = {
 
 bot.action(/done_(.+)/, async (ctx) => {
   let order = await db.models.Order.findById(ctx.match[1]).populate(
-    "category service user"
+    "category service user car"
   );
-  if (!order) return ctx.answerCbQuery('❗️ Buyurtma topilmadi');
+  if (!order) return ctx.answerCbQuery("❗️ Buyurtma topilmadi");
   order.status = "done";
   await order.save();
   await ctx.editMessageText(generateText(order), { parse_mode: "HTML" });
@@ -25,9 +25,9 @@ bot.action(/done_(.+)/, async (ctx) => {
 
 bot.action(/cancelled_(.+)/, async (ctx) => {
   let order = await db.models.Order.findById(ctx.match[1]).populate(
-    "category service user"
+    "category service user car"
   );
-  if (!order) return ctx.answerCbQuery('❗️ Buyurtma topilmadi');
+  if (!order) return ctx.answerCbQuery("❗️ Buyurtma topilmadi");
   order.status = "cancelled";
   await order.save();
   await ctx.editMessageText(generateText(order), { parse_mode: "HTML" });
@@ -35,12 +35,12 @@ bot.action(/cancelled_(.+)/, async (ctx) => {
 });
 
 const generateText = (order) => {
-  let { category, service, car, status, user } = order;
+  let { category, service, car, status, user, price } = order;
 
-  let text = `<a href="tg://user?id=${user.userId}">Mijoz</a>\n`;
+  let text = `<b>Mijoz:</b> <a href="tg://user?id=${user.userId}">${user.name}</a>\n`;
   text += `<b>Xizmat turi:</b> ${category.name} - ${service.name}\n`;
-  text += `<b>Mashina turi:</b> ${car}\n`;
-  text += `<b>Xizmat narxi:</b> ${service.price}\n`;
+  text += `<b>Mashina turi:</b> ${car.name}\n`;
+  text += `<b>Xizmat narxi:</b> ${price}\n`;
   text += `<b>Holati:</b> ${statuses[status]}`;
 
   return text;
