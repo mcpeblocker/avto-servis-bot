@@ -22,7 +22,7 @@ scene.hears("⚙️ Xizmatlar", (ctx) => {
 });
 
 scene.hears("📍 Manzil", (ctx) => {
-    
+    ctx.replyWithLocation('20.659324', '-11.406255');
 });
 
 scene.hears("💬 Xabar jo'natish", (ctx) => {
