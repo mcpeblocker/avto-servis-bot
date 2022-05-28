@@ -13,7 +13,7 @@ scene.enter((ctx) => {
 });
 
 scene.hears("ℹ️ Biz haqimizda", (ctx) => {
-    let text = "ℹ️ Bot haqida ma'lumot";
+    let text = "🤖 Bot yordamida istalgan joyda va istalgan vaqtda turli xil avto-servislardan foydalanish imkoniyatiga ega boʻlishingiz mumkin.\n🚘 Mashinangiz uchun kerakli servisni tanlagan zahoti hamyonbop narxlarni bilib oling.\n📝 Bundan tashqari botning oʻzida servislardagi navbatni kuzatishingiz va unga qoʻshilishingiz mumkin 🎉";
     ctx.reply(text);
 });
 
@@ -22,8 +22,7 @@ scene.hears("⚙️ Xizmatlar", (ctx) => {
 });
 
 scene.hears("📍 Manzil", (ctx) => {
-    let text = "📍 Manzil haqida ma'lumot";
-    ctx.reply(text);
+    
 });
 
 scene.hears("💬 Xabar jo'natish", (ctx) => {
