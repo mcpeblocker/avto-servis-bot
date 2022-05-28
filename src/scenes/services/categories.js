@@ -12,7 +12,7 @@ scene.enter(async (ctx) => {
   let keyboard = categories.map((category) => category.name);
   keyboard.push("◀️ Orqaga");
 
-  ctx.reply(text, Markup.keyboard(keyboard, { columns: 2 }));
+  ctx.reply(text, Markup.keyboard(keyboard, { columns: 2 }).resize());
 });
 
 scene.hears("◀️ Orqaga", (ctx) => {
