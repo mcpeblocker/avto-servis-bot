@@ -10,7 +10,7 @@ scene.enter((ctx) => {
   let keyboard = Markup.keyboard([
     "⬇️ Statistikani olish",
     "🔄 Bazani yangilash",
-  ]);
+  ]).resize();
 
   ctx.reply(text, keyboard);
 });
