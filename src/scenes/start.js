@@ -7,7 +7,7 @@ scene.enter((ctx) => {
     let keyboard = Markup.keyboard([
         ["ℹ️ Biz haqimizda", "⚙️ Xizmatlar"],
         ["📍 Manzil", "💬 Xabar jo'natish"]
-    ]);
+    ]).resize();
 
     ctx.reply(text, keyboard);
 });
