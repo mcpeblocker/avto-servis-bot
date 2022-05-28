@@ -10,7 +10,7 @@ scene.enter(async (ctx) => {
   ctx.scene.state.cars = cars;
   let keyboard = cars.map((car) => car.name);
   keyboard.push("◀️ Orqaga");
-  ctx.reply(text, Markup.keyboard(keyboard, { columns: 2 }));
+  ctx.reply(text, Markup.keyboard(keyboard, { columns: 2 }).resize());
 });
 
 scene.hears("◀️ Orqaga", (ctx) => ctx.scene.enter("services"));
