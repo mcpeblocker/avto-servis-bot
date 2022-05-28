@@ -30,7 +30,7 @@ scene.enter(async (ctx) => {
   let keyboard = Markup.keyboard([
     ["🛎 Navbatga qo'shilish"],
     ["◀️ Bekor qilish"],
-  ]);
+  ]).resize();
 
   ctx.replyWithHTML(text, keyboard);
 });
