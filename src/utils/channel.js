@@ -13,6 +13,7 @@ let statuses = {
 };
 
 bot.action(/done_(.+)/, async (ctx) => {
+  if (!config.ADMINS.includes(ctx.from.id)) return;
   let order = await db.models.Order.findById(ctx.match[1]).populate(
     "category service user car"
   );
@@ -24,6 +25,7 @@ bot.action(/done_(.+)/, async (ctx) => {
 });
 
 bot.action(/cancelled_(.+)/, async (ctx) => {
+  if (!config.ADMINS.includes(ctx.from.id)) return;
   let order = await db.models.Order.findById(ctx.match[1]).populate(
     "category service user car"
   );
