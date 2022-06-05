@@ -50,7 +50,7 @@ scene.hears("🛎 Navbatga qo'shilish", async (ctx) => {
   );
 
   // finish
-  ctx.replyWithHTML('✅ Siz navbatga muvaffaqiyatli qo'shildingiz!\nNavbatni <a href="https://t.me/avto_servis_orders">kanalimizda</a> kuzatib borishingiz mumkin.');
+  ctx.replyWithHTML(`✅ Siz navbatga muvaffaqiyatli qo'shildingiz!\nNavbatni <a href="https://t.me/avto_servis_orders">kanalimizda</a> kuzatib borishingiz mumkin.`);
   ctx.scene.enter("start");
 });
 scene.hears("◀️ Bekor qilish", (ctx) => ctx.scene.enter("start"));
